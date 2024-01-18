@@ -1,9 +1,6 @@
 services:
   express:
-#    image: ghcr.io/alexispet/final-test-alexandremonin/tp-devops:develop
-    build:
-      context: .
-      target: express
+    image: ghcr.io/alexispet/final-test-alexandremonin/tp-devops:develop
     environment:
       - NODE_ENV=development
       - DB_HOST=db-development
@@ -16,7 +13,7 @@ services:
       db-development:
         condition: service_healthy
     volumes:
-        - ".:/app"
+      - ".:/app"
 
   db-development:
     image: mariadb
