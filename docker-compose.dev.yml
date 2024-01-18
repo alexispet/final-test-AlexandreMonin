@@ -1,6 +1,8 @@
 services:
   express:
-    image: tp-devops:latest
+    build:
+      context: .
+      target: express
     environment:
       - NODE_ENV=development
       - DB_HOST=db-development
@@ -28,9 +30,9 @@ services:
       - 3306:3306
     healthcheck:
       test: [ "CMD", "healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized" ]
-      start_period: 1m
+      start_period: 10s
       start_interval: 10s
-      interval: 1m
+      interval: 15s
       timeout: 5s
       retries: 3
 
