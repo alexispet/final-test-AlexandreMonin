@@ -12,9 +12,6 @@ services:
     depends_on:
       db-development:
         condition: service_healthy
-    volumes:
-      - ".:/app"
-    command: ["npm", "run", "start"]
 
   db-development:
     image: mariadb
