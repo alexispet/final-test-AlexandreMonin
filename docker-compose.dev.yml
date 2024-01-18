@@ -13,7 +13,7 @@ services:
       db-development:
         condition: service_healthy
     volumes:
-        - ".:/app"
+        - ".:app"
 
   db-development:
     image: mariadb
