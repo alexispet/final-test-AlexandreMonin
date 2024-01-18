@@ -1,8 +1,6 @@
 services:
   express:
-    build:
-      context: .
-      target: express
+    image: ghcr.io/alexispet/final-test-alexandremonin/tp-devops:develop
     environment:
       - NODE_ENV=development
       - DB_HOST=db-development
