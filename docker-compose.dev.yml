@@ -12,8 +12,6 @@ services:
     depends_on:
       db-development:
         condition: service_healthy
-    volumes:
-      - ".:/app"
 
   db-development:
     image: mariadb
