@@ -22,6 +22,7 @@ WORKDIR /app
 #Copier les fichiers du build nécessaire au lancement
 COPY --from=build /app/package.json .
 COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/.express ./.express
 
 #Exposer le port
 EXPOSE 3000
