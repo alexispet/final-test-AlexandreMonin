@@ -40,19 +40,19 @@ jobs:
                   tags: ${{ steps.meta.outputs.tags }}
                   labels: ${{ steps.meta.outputs.labels }}
 
-    deploy-development:
-        needs: [build_and_push_image]
-        name: Déploiement sur le serveur de développement
-        if: github.ref_name == 'develop'
-        environment:
-            name: development
-            url: ${{ env.DEV_URL }}
-        runs-on: ubuntu-latest
-        steps:
-            - uses: webfactory/ssh-agent@v0.8.0
-              with:
-                  ssh-private-key: ${{ secrets.SSH_KEY }}
-            - run: |
-                ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
-                cd develop && \
-                sudo docker compose -f docker-compose.dev.yml up --pull always -d"
+#    deploy-development:
+#        needs: [build_and_push_image]
+#        name: Déploiement sur le serveur de développement
+#        if: github.ref_name == 'develop'
+#        environment:
+#            name: development
+#            url: ${{ env.DEV_URL }}
+#        runs-on: ubuntu-latest
+#        steps:
+#            - uses: webfactory/ssh-agent@v0.8.0
+#              with:
+#                  ssh-private-key: ${{ secrets.SSH_KEY }}
+#            - run: |
+#                ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+#                cd develop && \
+#                sudo docker compose -f docker-compose.dev.yml up --pull always -d"

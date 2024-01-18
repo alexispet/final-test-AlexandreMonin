@@ -1,6 +1,6 @@
 services:
   express:
-    image: ghcr.io/alexispet/final-test-alexandremonin/tp-devops:develop
+    image: tp-devops:latest
     environment:
       - NODE_ENV=development
       - DB_HOST=db-development
@@ -12,6 +12,8 @@ services:
     depends_on:
       db-development:
         condition: service_healthy
+    volumes:
+        - ".:/app"
 
   db-development:
     image: mariadb
@@ -31,6 +33,7 @@ services:
       interval: 1m
       timeout: 5s
       retries: 3
+
   adminer:
     image: adminer
     ports:
