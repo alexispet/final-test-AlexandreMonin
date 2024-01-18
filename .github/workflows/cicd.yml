@@ -5,7 +5,7 @@ on: [push]
 env:
     REGISTRY: ghcr.io
     IMAGE_NAME: ${{ github.repository }}
-    DEVELOPMENT_URL: ${{ secrets.DEVELOPMENT_URL }}
+    DEVELOPMENT_URL: ${{ vars.DEV_URL }}
 
 jobs:
     build_and_push_image:
@@ -46,7 +46,7 @@ jobs:
         if: github.ref_name == 'develop'
         environment:
             name: development
-            url: ${{ env.DEVELOPMENT_URL }}:3000
+            url: ${{ env.DEV_URL }}
         runs-on: ubuntu-latest
         steps:
             - uses: webfactory/ssh-agent@v0.8.0
