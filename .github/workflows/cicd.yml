@@ -46,7 +46,7 @@ jobs:
         if: github.ref_name == 'develop'
         environment:
             name: development
-            url: ${{ secrets.SSH_HOST }}:3000
+            url: ${{ env.DEVELOPMENT_URL }}:3000
         runs-on: ubuntu-latest
         steps:
             - uses: webfactory/ssh-agent@v0.8.0
