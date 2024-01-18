@@ -12,7 +12,7 @@ LABEL org.opencontainers.image.source https://github.com/alexispet/final-test-al
 
 WORKDIR /app
 
-COPY --from=build /app
+COPY --from=build /app .
 
 EXPOSE 3000
 
