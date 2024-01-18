@@ -3,7 +3,7 @@ services:
     image: ghcr.io/alexispet/final-test-alexandremonin/tp-devops:develop
     environment:
       - NODE_ENV=development
-      - DB_HOST=db
+      - DB_HOST=db-development
       - DB_USER=devops-user
       - DB_PASSWORD=devops-password
       - DB_DATABASE=tp-devops
@@ -16,7 +16,7 @@ services:
       - ".:/app"
     command: ["npm", "run", "start"]
 
-  db:
+  db-development:
     image: mariadb
     environment:
       MARIADB_RANDOM_ROOT_PASSWORD: yes

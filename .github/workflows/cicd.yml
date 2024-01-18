@@ -1,11 +1,12 @@
 name: cicd
-run-name: build and push the image
+run-name: Deploy the project
 on: [push]
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-    
+    REGISTRY: ghcr.io
+    IMAGE_NAME: ${{ github.repository }}
+    DEVELOPMENT_URL: ${{ secrets.DEVELOPMENT_URL }}
+
 jobs:
     build_and_push_image:
         name: Push Docker image to Docker Hub
@@ -38,3 +39,20 @@ jobs:
                   push: true
                   tags: ${{ steps.meta.outputs.tags }}
                   labels: ${{ steps.meta.outputs.labels }}
+
+    deploy-development:
+        needs: [build_and_push_image]
+        name: Déploiement sur le serveur de développement
+        if: github.ref_name == 'develop'
+        environment:
+            name: development
+            url: ${{ secrets.SSH_HOST }}:3000
+        runs-on: ubuntu-latest
+        steps:
+            - uses: webfactory/ssh-agent@v0.8.0
+              with:
+                  ssh-private-key: ${{ secrets.SSH_KEY }}
+            - run: |
+                ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+                cd develop/final-test-AlexandreMonin && \
+                sudo docker compose -f docker-compose.dev.yml up --pull always -d"
