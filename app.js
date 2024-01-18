@@ -6,10 +6,10 @@ let port = process.env.PORT || 3000;
 
 // Configurations de la base de données
 const pool = mariadb.createPool({
-  host: 'mariadb',
-  user: 'votre_utilisateur',
-  password: 'votre_mot_de_passe',
-  database: 'votre_base_de_donnees',
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'tp-devops',
   connectionLimit: 5
 });
 
