@@ -12,8 +12,7 @@ LABEL org.opencontainers.image.source https://github.com/alexispet/final-test-al
 
 WORKDIR /app
 
-COPY --from=build package.json .
-COPY --from=build node_modules ./node_modules
+COPY --from=build /app
 
 EXPOSE 3000
 
