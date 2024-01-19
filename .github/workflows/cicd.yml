@@ -12,8 +12,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: audit npm
-            run:
-                  npm i && npm audit
+              run:
+                npm i && npm audit
 
     build_and_push_image:
         needs: [security_audit]
