@@ -71,4 +71,4 @@ jobs:
             - run: |
                 ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
                 cd production && \
-                sudo docker compose -f docker-compose.prd.yml up --pull always -d"
+                sudo docker compose -f docker-compose.prod.yml up --pull always -d"
