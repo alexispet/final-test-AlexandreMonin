@@ -97,5 +97,5 @@ jobs:
         id: lighthouse
         with:
             urls: |
-                http://ec2-3-89-31-7.compute-1.amazonaws.com
+            http://ec2-3-89-31-7.compute-1.amazonaws.com
             temporaryPublicStorage: true
