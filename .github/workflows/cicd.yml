@@ -98,5 +98,5 @@ jobs:
               uses: treosh/lighthouse-ci-action@v10
               with:
                   urls: |
-            http://ec2-3-89-31-7.compute-1.amazonaws.com
-                  temporaryPublicStorage: true
+                    http://ec2-3-89-31-7.compute-1.amazonaws.com
+              temporaryPublicStorage: true
