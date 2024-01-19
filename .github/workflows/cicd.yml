@@ -91,11 +91,11 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     lighthouse:
-        - runs-on: ubuntu-latest
-        - name: Audit URL using Lighthouse
-          uses: treosh/lighthouse-ci-action@v9
-          id: lighthouse
-          with:
-              urls: |
-                http://ec2-3-89-31-7.compute-1.amazonaws.com
-              temporaryPublicStorage: true
+        runs-on: ubuntu-latest
+        name: Audit URL using Lighthouse
+        uses: treosh/lighthouse-ci-action@v9
+        id: lighthouse
+        with:
+            urls: |
+            http://ec2-3-89-31-7.compute-1.amazonaws.com
+            temporaryPublicStorage: true
