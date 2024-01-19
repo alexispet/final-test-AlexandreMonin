@@ -3,10 +3,10 @@ services:
     image: ghcr.io/alexispet/final-test-alexandremonin/tp-devops:main
     environment:
       - NODE_ENV=production
-      - DB_HOST=${DB_HOST}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_DATABASE=${DB_DATABASE}
+      - DB_HOST=db-production
+      - DB_USER=devops-user
+      - DB_PASSWORD=devops-password
+      - DB_DATABASE=tp-devops
     depends_on:
       db-production:
         condition: service_healthy
