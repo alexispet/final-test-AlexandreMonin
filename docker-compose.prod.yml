@@ -3,12 +3,10 @@ services:
     image: ghcr.io/alexispet/final-test-alexandremonin/tp-devops:main
     environment:
       - NODE_ENV=production
-      - DB_HOST=db-production
-      - DB_USER=devops-user
-      - DB_PASSWORD=devops-password
-      - DB_DATABASE=tp-devops
-    ports:
-      - "80:3000"
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
     depends_on:
       db-production:
         condition: service_healthy
@@ -17,7 +15,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.express-prod.rule=Host(`ec2-3-89-31-7.compute-1.amazonaws.com`)"
       - "traefik.http.routers.express-prod.entrypoints=prod"
-      -
   db-production:
     image: mariadb
     environment:
@@ -28,7 +25,7 @@ services:
     volumes:
       - "./docker/mariadb/data:/var/lib/mysql"
     ports:
-      - 3307:3306
+      - 3306:3306
     healthcheck:
       test: [ "CMD", "healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized" ]
       start_period: 10s
@@ -36,11 +33,6 @@ services:
       interval: 15s
       timeout: 5s
       retries: 3
-
-  adminer:
-    image: adminer
-    ports:
-      - 8080:8080
 
   traefik:
     image: traefik:v2.10
