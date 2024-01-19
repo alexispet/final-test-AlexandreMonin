@@ -1,0 +1,38 @@
+services:
+  express:
+    image: ghcr.io/alexispet/final-test-alexandremonin/tp-devops:main
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=db-production
+      - DB_USER=devops-user
+      - DB_PASSWORD=devops-password
+      - DB_DATABASE=tp-devops
+    ports:
+      - "80:3000"
+    depends_on:
+      db-production:
+        condition: service_healthy
+
+  db-production:
+    image: mariadb
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: yes
+      MARIADB_DATABASE: tp-devops
+      MARIADB_USER: devops-user
+      MARIADB_PASSWORD: devops-password
+    volumes:
+      - "./docker/mariadb/data:/var/lib/mysql"
+    ports:
+      - 3307:3306
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized" ]
+      start_period: 10s
+      start_interval: 10s
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
