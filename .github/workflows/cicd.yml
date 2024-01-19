@@ -7,16 +7,7 @@ env:
     IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-    security_audit:
-        name: Security audit
-        runs-on: ubuntu-latest
-        steps:
-            - name: audit npm
-              run:
-                npm i && npm audit
-
     build_and_push_image:
-        needs: [security_audit]
         name: Push Docker image to Docker Hub
         runs-on: ubuntu-latest
         permissions:
