@@ -91,16 +91,11 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     lighthouse:
-        needs: [deploy-production]
-        name: lighthouse check
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - name: Audit URLs using Lighthouse
-              uses: treosh/lighthouse-ci-action@v10
-              with:
-                  urls: |
-                         http://ec2-3-93-150-250.compute-1.amazonaws.com:80
-                  budgetPath: ./budget.json
-                  uploadArtifacts: true
-                  temporaryPublicStorage: true
+        - runs-on: ubuntu-latest
+        - name: Audit URL using Lighthouse
+          uses: treosh/lighthouse-ci-action@v9
+          id: lighthouse
+          with:
+              urls: |
+                http://ec2-3-89-31-7.compute-1.amazonaws.com
+              temporaryPublicStorage: true
