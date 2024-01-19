@@ -89,13 +89,3 @@ jobs:
               env:
                   DEFAULT_BRANCH: main
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    lighthouse:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - name: Audit URLs using Lighthouse
-              uses: treosh/lighthouse-ci-action@v10
-              with:
-                  urls: |
-                    http://ec2-3-89-31-7.compute-1.amazonaws.com
