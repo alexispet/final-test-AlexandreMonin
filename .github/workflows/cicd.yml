@@ -45,7 +45,7 @@ jobs:
         if: github.ref_name == 'develop'
         environment:
             name: development
-            url: http://ec2-3-93-150-250.compute-1.amazonaws.com:3000
+            url: http://ec2-3-86-233-241.compute-1.amazonaws.com:3000
         runs-on: ubuntu-latest
         steps:
             - uses: webfactory/ssh-agent@v0.8.0
@@ -68,7 +68,7 @@ jobs:
         if: github.ref_name == 'main'
         environment:
             name: production
-            url: http://ec2-3-93-150-250.compute-1.amazonaws.com:80
+            url: http://ec2-3-86-233-241.compute-1.amazonaws.com:80
         runs-on: ubuntu-latest
         steps:
             - uses: webfactory/ssh-agent@v0.8.0
