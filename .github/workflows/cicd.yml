@@ -41,7 +41,7 @@ jobs:
 
     deploy-development:
         needs: [build_and_push_image]
-        name: Déploiement sur le serveur de développement
+        name: Development deploy
         if: github.ref_name == 'develop'
         environment:
             name: development
@@ -59,12 +59,12 @@ jobs:
               uses: containrrr/shoutrrr-action@v1
               with:
                   url: discord://7QQE0njo2lJbwQCJTGKpcFa9svKZXcAXPN4UcMxzNNrjOve3jzktGll8nAIg_uDWyEDv@1197878677569028147
-                  title: Deployed ${{ github.sha }}
+                  title: Development deployed (${{ github.sha }})
                   message: See changes at ${{ github.event.compare }}
     
     deploy-production:
         needs: [build_and_push_image]
-        name: Déploiement sur le serveur de production
+        name: Production deploy
         if: github.ref_name == 'main'
         environment:
             name: production
@@ -82,7 +82,7 @@ jobs:
               uses: containrrr/shoutrrr-action@v1
               with:
                   url: discord://7QQE0njo2lJbwQCJTGKpcFa9svKZXcAXPN4UcMxzNNrjOve3jzktGll8nAIg_uDWyEDv@1197878677569028147
-                  title: Deployed ${{ github.sha }}
+                  title: Production Deployed (${{ github.sha }})
                   message: See changes at ${{ github.event.compare }}
 
     lint:
