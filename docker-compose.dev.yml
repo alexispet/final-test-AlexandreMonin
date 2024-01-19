@@ -12,6 +12,8 @@ services:
     depends_on:
       db-development:
         condition: service_healthy
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
   db-development:
     image: mariadb

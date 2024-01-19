@@ -12,7 +12,9 @@ services:
     depends_on:
       db-production:
         condition: service_healthy
-
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      
   db-production:
     image: mariadb
     environment:
