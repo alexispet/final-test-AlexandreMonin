@@ -55,7 +55,13 @@ jobs:
                 ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
                 cd develop && \
                 sudo docker compose -f docker-compose.dev.yml up --pull always -d"
-
+            - name: Shoutrrr
+              uses: containrrr/shoutrrr-action@v1
+              with:
+                  url: ${{ secrets.SHOUTRRR_URL }}
+                  title: Deployed ${{ github.sha }}
+                  message: See changes at ${{ github.event.compare }}
+    
     deploy-production:
         needs: [build_and_push_image]
         name: Déploiement sur le serveur de production
@@ -72,6 +78,12 @@ jobs:
                 ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
                 cd production && \
                 sudo docker compose -f docker-compose.prod.yml up --pull always -d"
+            - name: Shoutrrr
+              uses: containrrr/shoutrrr-action@v1
+              with:
+                  url: ${{ secrets.SHOUTRRR_URL }}
+                  title: Deployed ${{ github.sha }}
+                  message: See changes at ${{ github.event.compare }}
 
     lint:
         runs-on: ubuntu-latest
